@@ -25,3 +25,9 @@ class RepositoryPolicyTest(unittest.TestCase):
             "python -m pip_audit",
         ]:
             self.assertIn(command, text)
+
+    def test_workflow_upgrades_vulnerable_packaging_tools_before_audit(self) -> None:
+        text = Path(".github/workflows/ci.yml").read_text(encoding="utf-8")
+        upgrade = 'python -m pip install --upgrade "pip>=26.1.2" "setuptools>=83"'
+        self.assertIn(upgrade, text)
+        self.assertLess(text.index(upgrade), text.index("python -m pip_audit"))
