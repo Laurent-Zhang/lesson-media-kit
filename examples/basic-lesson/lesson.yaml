@@ -1,0 +1,18 @@
+version: 1
+metadata:
+  title: Multilingual greetings
+  source_language: en
+  target_language: zh-CN
+segments:
+  - id: hello
+    text: 你好
+    transliteration: nǐ hǎo
+    translation: Hello
+    start_ms: 0
+    duration_ms: 1200
+  - id: thanks
+    text: 谢谢
+    transliteration: xiè xie
+    translation: Thank you
+    start_ms: 1400
+    duration_ms: 1100

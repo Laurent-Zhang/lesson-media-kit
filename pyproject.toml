@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "lesson-media-kit"
+version = "0.1.0"
+description = "Local-first toolkit for generating language-lesson media"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+dependencies = [
+  "httpx>=0.28,<1",
+  "jsonschema>=4.25,<5",
+  "Jinja2>=3.1,<4",
+  "pydantic>=2.11,<3",
+  "PyYAML>=6.0,<7",
+  "typer>=0.16,<1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "ruff>=0.12,<1", "mypy>=1.17,<2", "types-PyYAML>=6.0,<7", "build>=1.3,<2", "pip-audit>=2.9,<3"]
+
+[project.scripts]
+lesson-media = "lesson_media_kit.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lesson_media_kit"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"templates/default" = "lesson_media_kit/templates/default"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.mypy]
+python_version = "3.11"
+strict = true

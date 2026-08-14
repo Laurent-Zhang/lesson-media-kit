@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="{{ lesson.metadata.target_language }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; script-src 'none'; style-src 'unsafe-inline'">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ lesson.metadata.title }}</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; background: #111827; color: #f9fafb; }
+    article { max-width: 60rem; margin: auto; }
+    section { padding: 1.5rem; margin: 1rem 0; border: 1px solid #374151; border-radius: 1rem; }
+    .translation, .transliteration { color: #d1d5db; }
+  </style>
+</head>
+<body>
+  <article>
+    <h1>{{ lesson.metadata.title }}</h1>
+    {% for segment in lesson.segments %}
+    <section id="{{ segment.id }}">
+      <p class="text">{{ segment.text }}</p>
+      {% if segment.transliteration %}<p class="transliteration">{{ segment.transliteration }}</p>{% endif %}
+      {% if segment.translation %}<p class="translation">{{ segment.translation }}</p>{% endif %}
+    </section>
+    {% endfor %}
+  </article>
+</body>
+</html>
